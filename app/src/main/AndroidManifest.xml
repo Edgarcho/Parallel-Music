@@ -16,9 +16,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TrackSearchActivity" />
-        <activity android:name=".MostPopularActivity" />
-        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".TrackSearchActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.epicodus.lyricsmatcher.MainActivity">
+            </meta-data>
+        </activity>
+        <activity android:name=".MostPopularActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.epicodus.lyricsmatcher.MainActivity">
+            </meta-data>
+        </activity>
+        <activity android:name=".AboutActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.epicodus.lyricsmatcher.MainActivity">
+            </meta-data>
+        </activity>
     </application>
 
 </manifest>

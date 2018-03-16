@@ -16,10 +16,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"
+        android:shadowColor="@color/colorAccent"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="20"
         android:text="Lyrics Matcher"
         android:textColor="@color/colorTextIcons"
-        android:textSize="40sp" />
+        android:textSize="50sp" />
 
     <Button
         android:id="@+id/searchButton"
@@ -37,9 +40,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/searchButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
         android:background="@color/colorTextIcons"
+        android:ems="10"
         android:hint="Enter Song"
-        android:ems="10" />
+        android:padding="8dp" />
 
 </RelativeLayout>
