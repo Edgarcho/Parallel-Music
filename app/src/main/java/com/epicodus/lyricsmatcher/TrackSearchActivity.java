@@ -14,7 +14,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TrackSearchActivity extends AppCompatActivity {
-    private String[] dummySongs = new String[] {"God's Plan","Psycho","All The Stars (with SZA)","Friends","IDGAF", "Look Alive", "The Middle", "Mine"};
+    private String[] dummySongs = new String[] {"God's Plan","Psycho","All The Stars (with SZA)","Friends","IDGAF", "Look Alive",
+            "The Middle", "Mine", "These Days", "Sad!", "Love Lies", "Rockstar (REMIX)", "Pray For Me"};
 
     @BindView(R.id.songTextView) TextView mSongTextView;
     @BindView(R.id.songListView) ListView mSongListView;
@@ -38,6 +39,6 @@ public class TrackSearchActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String song = intent.getStringExtra("song");
-        mSongTextView.setText("Here are all the songs that fit that search query: " + song);
+        mSongTextView.setText("Searching for: " + song);
     }
 }
