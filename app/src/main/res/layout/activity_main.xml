@@ -31,4 +31,15 @@
         android:textColor="@color/colorTextIcons"
         android:text="Search" />
 
+    <EditText
+        android:id="@+id/songEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/searchButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@color/colorTextIcons"
+        android:hint="Enter Song"
+        android:ems="10" />
+
 </RelativeLayout>
