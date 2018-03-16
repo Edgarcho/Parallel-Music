@@ -3,9 +3,12 @@ package com.epicodus.lyricsmatcher;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,7 +28,13 @@ public class TrackSearchActivity extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, dummySongs);
         mSongListView.setAdapter(adapter);
 
-
+        mSongListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String dummySongs = ((TextView)view).getText().toString();
+                Toast.makeText(TrackSearchActivity.this, dummySongs, Toast.LENGTH_LONG).show();
+            }
+        });
 
         Intent intent = getIntent();
         String song = intent.getStringExtra("song");
