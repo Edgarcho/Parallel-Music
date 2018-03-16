@@ -11,7 +11,7 @@
         app:srcCompat="@drawable/background" />
 
     <TextView
-        android:id="@+id/appName"
+        android:id="@+id/appNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
