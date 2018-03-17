@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,12 +17,14 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.searchButton) Button mSearchButton;
     @BindView(R.id.appNameTextView) TextView mAppNameTextView;
     @BindView(R.id.songEditText) EditText mSongEditText;
+    @BindView(R.id.app_bar) android.support.v7.widget.Toolbar mToolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        setSupportActionBar(mToolBar);
 
         Typeface painterFont = Typeface.createFromAsset(getAssets(), "fonts/painter.ttf");
         mAppNameTextView.setTypeface(painterFont);
