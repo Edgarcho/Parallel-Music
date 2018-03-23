@@ -44,6 +44,7 @@
         android:background="@color/colorTextIcons"
         android:ems="10"
         android:hint="Enter Song"
+        android:inputType="text"
         android:padding="8dp" />
 
 </RelativeLayout>
