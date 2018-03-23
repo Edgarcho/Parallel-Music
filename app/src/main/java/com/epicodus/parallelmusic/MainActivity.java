@@ -1,4 +1,4 @@
-package com.epicodus.lyricsmatcher;
+package com.epicodus.parallelmusic;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

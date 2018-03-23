@@ -1,4 +1,4 @@
-package com.epicodus.lyricsmatcher;
+package com.epicodus.parallelmusic;
 
 import org.junit.Test;
 

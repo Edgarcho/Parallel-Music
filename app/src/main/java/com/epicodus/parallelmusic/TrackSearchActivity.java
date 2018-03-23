@@ -1,4 +1,4 @@
-package com.epicodus.lyricsmatcher;
+package com.epicodus.parallelmusic;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

@@ -1,4 +1,4 @@
-package com.epicodus.lyricsmatcher;
+package com.epicodus.parallelmusic;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
