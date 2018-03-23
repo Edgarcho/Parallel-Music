@@ -26,7 +26,7 @@
         android:textSize="50sp" />
 
     <Button
-        android:id="@+id/searchButton"
+        android:id="@+id/searchTrackButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -39,7 +39,7 @@
         android:id="@+id/songEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/searchButton"
+        android:layout_above="@+id/searchTrackButton"
         android:layout_centerHorizontal="true"
         android:background="@color/colorTextIcons"
         android:ems="10"

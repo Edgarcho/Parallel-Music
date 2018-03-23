@@ -51,7 +51,7 @@ public class TrackSearchActivity extends AppCompatActivity {
     }
     private void getSongs(String song){
         final LastFmService lastFmService = new LastFmService();
-        lastFmService.searchButton(song, new Callback() {
+        lastFmService.searchTrackButton(song, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();

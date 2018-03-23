@@ -13,7 +13,7 @@ import okhttp3.Request;
  */
 
 public class LastFmService {
-    public static void searchButton(String song, Callback callback){
+    public static void searchTrackButton(String song, Callback callback){
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.LASTFM_BASE_TRACKSEARCH_URL).newBuilder();
