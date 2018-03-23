@@ -5,4 +5,5 @@ package com.epicodus.parallelmusic;
  */
 
 public class Constants {
+    public static final String LASTFM_TOKEN  = BuildConfig.LASTFM_TOKEN;
 }
