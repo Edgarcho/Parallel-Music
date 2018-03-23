@@ -3,6 +3,7 @@ package com.epicodus.parallelmusic;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,10 +11,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class TrackSearchActivity extends AppCompatActivity {
+    public static final String TAG = TrackSearchActivity.class.getSimpleName();
     private String[] dummySongs = new String[] {"God's Plan","Psycho","All The Stars (with SZA)","Friends","IDGAF", "Look Alive",
             "The Middle", "Mine", "These Days", "Sad!", "Love Lies", "Rockstar (REMIX)", "Pray For Me"};
 
@@ -40,5 +47,26 @@ public class TrackSearchActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String song = intent.getStringExtra("song");
         mSongTextView.setText("Searching for: " + song);
+        getSongs(song);
+    }
+    private void getSongs(String song){
+        final LastFmService lastFmService = new LastFmService();
+        lastFmService.searchButton(song, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try{
+                    String jsonData = response.body().string();
+                    Log.v(TAG, jsonData);
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+
+            }
+        });
     }
 }
