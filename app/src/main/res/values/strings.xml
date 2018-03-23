@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">Parallel Music</string>
-    <string name="track_activity">Songs</string>
-    <string name="popular_activity">Most Popular</string>
-    <string name="about_activity">About</string>
-</resources>
