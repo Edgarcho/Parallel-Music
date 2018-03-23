@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,11 +22,11 @@ import okhttp3.Response;
 
 public class TrackSearchActivity extends AppCompatActivity {
     public static final String TAG = TrackSearchActivity.class.getSimpleName();
-    private String[] dummySongs = new String[] {"God's Plan","Psycho","All The Stars (with SZA)","Friends","IDGAF", "Look Alive",
-            "The Middle", "Mine", "These Days", "Sad!", "Love Lies", "Rockstar (REMIX)", "Pray For Me"};
 
     @BindView(R.id.songTextView) TextView mSongTextView;
     @BindView(R.id.songListView) ListView mSongListView;
+
+    public ArrayList<Track> tracks = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class TrackSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_track_search);
         ButterKnife.bind(this);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, dummySongs);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, tracks);
         mSongListView.setAdapter(adapter);
 
         mSongListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -61,7 +62,11 @@ public class TrackSearchActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 try{
                     String jsonData = response.body().string();
-                    Log.v(TAG, jsonData);
+                    if(response.isSuccessful()){
+                        Log.v(TAG, jsonData);
+                        tracks = lastFmService.processResults(response);
+                    }
+
                 }catch (IOException e){
                     e.printStackTrace();
                 }

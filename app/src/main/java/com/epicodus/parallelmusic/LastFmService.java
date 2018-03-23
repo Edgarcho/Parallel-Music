@@ -22,6 +22,8 @@ import okhttp3.Response;
  */
 
 public class LastFmService {
+    public static final String TAG = LastFmService.class.getSimpleName();
+
     public static void searchTrackButton(String song, Callback callback){
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
@@ -30,7 +32,6 @@ public class LastFmService {
         urlBuilder.addQueryParameter("api_key",Constants.LASTFM_TOKEN);
         urlBuilder.addQueryParameter("format", Constants.LASTFM_FORMAT_PARAMETER);
         String url = urlBuilder.build().toString();
-        Log.v("LastFmService", url);
 
         Request request= new Request.Builder()
                 .url(url)
@@ -39,21 +40,22 @@ public class LastFmService {
         Call call = client.newCall(request);
         call.enqueue(callback);
     }
+
     public ArrayList<Track> processResults(Response response) {
         ArrayList<Track> tracks = new ArrayList<>();
 
         try {
             String jsonData = response.body().string();
-            JSONObject lastFmJSON = new JSONObject(jsonData);
-            JSONArray trackmatchesJSON = lastFmJSON.getJSONArray("track");
-            for (int i = 0; i < trackmatchesJSON.length(); i++) {
-                JSONObject trackJSON = trackmatchesJSON.getJSONObject(i);
-                String name = trackJSON.getString("name");
-                String artist = trackJSON.getString("artist");
-                String website = trackJSON.getString("url");
-                double listeners = trackJSON.getDouble("listeners");
+            JSONObject trackmatchesJSON = new JSONObject(jsonData);
+            JSONArray trackJSON = trackmatchesJSON.getJSONArray("track");
+            for (int i = 0; i < trackJSON.length(); i++) {
+                JSONObject singleTrackJSON = trackJSON.getJSONObject(i);
+                String name = singleTrackJSON.getString("name");
+                String artist = singleTrackJSON.getString("artist");
+                String website = singleTrackJSON.getString("url");
+                double listeners = singleTrackJSON.getDouble("listeners");
                 ArrayList<String> imageUrl = new ArrayList<>();
-                JSONArray imageUrlJSON = trackJSON.getJSONArray("image");
+                JSONArray imageUrlJSON = singleTrackJSON.getJSONArray("image");
                 for (int y = 0; y < imageUrlJSON.length(); y++) {
                     imageUrl.add(imageUrlJSON.getJSONObject(y).getString("#text"));
                 }
