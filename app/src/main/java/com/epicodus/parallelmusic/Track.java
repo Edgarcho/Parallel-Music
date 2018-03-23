@@ -10,10 +10,10 @@ public class Track {
     private String name;
     private String artist;
     private String website;
-    private int listeners;
+    private double listeners;
     private ArrayList<String> imageUrl = new ArrayList<>();
 
-    public Track(String name, String artist, String website, int listeners, ArrayList<String> imageUrl){
+    public Track(String name, String artist, String website, double listeners, ArrayList<String> imageUrl){
         this.name = name;
         this.artist = artist;
         this.website = website;
@@ -29,7 +29,7 @@ public class Track {
     public String getWebsite(){
         return website;
     }
-    public int getListeners(){
+    public double getListeners(){
         return listeners;
     }
     public ArrayList<String> getImageUrl(){
