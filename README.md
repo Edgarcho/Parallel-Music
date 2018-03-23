@@ -8,7 +8,7 @@ By Edgar Hernandez Ortiz
 
 Download:
 
-    $ git clone `https://github.com/Edgarcho/lyricsMatcher.git`
+    $ git clone `https://github.com/Edgarcho/Parallel-Music.git`
 
 Import Project by Android Studio Menu > File > Import Project...
 Run Lyrics Matcher by Android Studio Menu > Run > Run YourApp.
