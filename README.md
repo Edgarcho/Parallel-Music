@@ -1,6 +1,6 @@
-# Lyrics Matcher
+# Parallel Music
 
-A mobile application that can find the lyrics for any song. The app should provided the user with the artist, song name, and the lyrics.
+A mobile application to search for any song information and suggest songs that are similar. The app should provided the user with the artist, artist info, and and song that are similar.
 
 By Edgar Hernandez Ortiz
 
@@ -14,7 +14,7 @@ Import Project by Android Studio Menu > File > Import Project...
 Run Lyrics Matcher by Android Studio Menu > Run > Run YourApp.
 
 ### Future additions
-Will add app bar, custom adapter and link to the three activity.
+Will add bottom app bar, custom adapter and link to the three activity, last.fm api.
 
 ## Technologies Used
   * Android Studio
