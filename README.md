@@ -11,11 +11,14 @@ Download:
     $ git clone `https://github.com/Edgarcho/Parallel-Music.git`
 
 Import Project by Android Studio Menu > File > Import Project...
-Before running project, you will need an lastFm api key.
-    1.Create a lastFm account.
-    2.Add api key to gradle.properties file LastFmToken = "YOUR-UNIQUE-ACCESS-TOKEN-HERE"
 
-Run Parallel Musicgit  by Android Studio Menu > Run > Run YourApp.
+Before running project, you will need an lastFm api key.
+
+  1.Create a lastFm account.
+
+  2.Add api key to gradle.properties file LastFmToken = "YOUR-UNIQUE-ACCESS-TOKEN-HERE"
+
+Run Parallel Music by Android Studio Menu > Run > Run YourApp.
 
 ### Future additions
 Will add bottom app bar, custom adapter and link to the three activity, last.fm api.
