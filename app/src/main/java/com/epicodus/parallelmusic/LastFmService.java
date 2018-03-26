@@ -22,7 +22,6 @@ import okhttp3.Response;
  */
 
 public class LastFmService {
-    public static final String TAG = LastFmService.class.getSimpleName();
 
     public static void searchTrackButton(String song, Callback callback){
         OkHttpClient client = new OkHttpClient.Builder()
@@ -46,7 +45,9 @@ public class LastFmService {
 
         try {
             String jsonData = response.body().string();
-            JSONObject trackmatchesJSON = new JSONObject(jsonData);
+            JSONObject lastJSON = new JSONObject(jsonData);
+            JSONObject resultsJSON = lastJSON.getJSONObject("results");
+            JSONObject trackmatchesJSON = resultsJSON.getJSONObject("trackmatches");
             JSONArray trackJSON = trackmatchesJSON.getJSONArray("track");
             for (int i = 0; i < trackJSON.length(); i++) {
                 JSONObject singleTrackJSON = trackJSON.getJSONObject(i);

@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,17 +33,6 @@ public class TrackSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_track_search);
         ButterKnife.bind(this);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, tracks);
-        mSongListView.setAdapter(adapter);
-
-        mSongListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String dummySongs = ((TextView)view).getText().toString();
-                Toast.makeText(TrackSearchActivity.this, dummySongs, Toast.LENGTH_LONG).show();
-            }
-        });
-
         Intent intent = getIntent();
         String song = intent.getStringExtra("song");
         mSongTextView.setText("Searching for: " + song);
@@ -59,18 +47,24 @@ public class TrackSearchActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try{
-                    String jsonData = response.body().string();
-                    if(response.isSuccessful()){
-                        Log.v(TAG, jsonData);
-                        tracks = lastFmService.processResults(response);
+            public void onResponse(Call call, Response response) {
+                tracks = lastFmService.processResults(response);
+
+                TrackSearchActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String[] trackNames = new String[tracks.size()];
+                        for (int i = 0; i < trackNames.length; i++) {
+                            trackNames[i] = tracks.get(i).getName();
+                        }
+                        ArrayAdapter adapter = new ArrayAdapter(TrackSearchActivity.this, android.R.layout.simple_list_item_1, trackNames);
+                        mSongListView.setAdapter(adapter);
+
+                        for (Track track : tracks ){
+                            Log.d(TAG, "Name: " + track.getName());
+                        }
                     }
-
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-
+                });
             }
         });
     }
