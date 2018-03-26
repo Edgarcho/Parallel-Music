@@ -1,4 +1,4 @@
-package com.epicodus.parallelmusic;
+package com.epicodus.parallelmusic.ui;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.epicodus.parallelmusic.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

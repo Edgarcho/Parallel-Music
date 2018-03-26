@@ -1,6 +1,7 @@
-package com.epicodus.parallelmusic;
+package com.epicodus.parallelmusic.services;
 
-import android.util.Log;
+import com.epicodus.parallelmusic.ui.Constants;
+import com.epicodus.parallelmusic.models.Track;
 
 import org.json.JSONArray;
 import org.json.JSONException;

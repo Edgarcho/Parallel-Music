@@ -1,4 +1,6 @@
-package com.epicodus.parallelmusic;
+package com.epicodus.parallelmusic.ui;
+
+import com.epicodus.parallelmusic.BuildConfig;
 
 /**
  * Created by Guest on 3/23/18.

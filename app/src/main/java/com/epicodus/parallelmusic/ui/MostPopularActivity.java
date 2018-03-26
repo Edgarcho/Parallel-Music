@@ -1,7 +1,9 @@
-package com.epicodus.parallelmusic;
+package com.epicodus.parallelmusic.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.epicodus.parallelmusic.R;
 
 public class MostPopularActivity extends AppCompatActivity {
 

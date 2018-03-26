@@ -1,4 +1,4 @@
-package com.epicodus.parallelmusic;
+package com.epicodus.parallelmusic.models;
 
 import java.util.ArrayList;
 

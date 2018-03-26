@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity android:name=".ui.MainActivity"
             android:theme="@style/NoActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,22 +18,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TrackSearchActivity" android:label="@string/track_activity">
+        <activity android:name=".ui.TrackSearchActivity" android:label="@string/track_activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity">
+                android:value=".ui.MainActivity">
             </meta-data>
         </activity>
-        <activity android:name=".MostPopularActivity" android:label="@string/popular_activity">
+        <activity android:name=".ui.MostPopularActivity" android:label="@string/popular_activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity">
+                android:value=".ui.MainActivity">
             </meta-data>
         </activity>
-        <activity android:name=".AboutActivity" android:label="@string/about_activity">
+        <activity android:name=".ui.AboutActivity" android:label="@string/about_activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity">
+                android:value=".ui.MainActivity">
             </meta-data>
         </activity>
 

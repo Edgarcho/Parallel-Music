@@ -1,14 +1,16 @@
-package com.epicodus.parallelmusic;
+package com.epicodus.parallelmusic.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.epicodus.parallelmusic.R;
+import com.epicodus.parallelmusic.models.Track;
+import com.epicodus.parallelmusic.services.LastFmService;
 
 import java.io.IOException;
 import java.util.ArrayList;
