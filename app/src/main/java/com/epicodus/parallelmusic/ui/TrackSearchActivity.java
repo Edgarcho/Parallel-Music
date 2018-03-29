@@ -22,8 +22,6 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class TrackSearchActivity extends AppCompatActivity {
-    public static final String TAG = TrackSearchActivity.class.getSimpleName();
-
     @BindView(R.id.songTextView) TextView mSongTextView;
     @BindView(R.id.songListView) ListView mSongListView;
 
@@ -61,10 +59,6 @@ public class TrackSearchActivity extends AppCompatActivity {
                         }
                         ArrayAdapter adapter = new ArrayAdapter(TrackSearchActivity.this, android.R.layout.simple_list_item_1, trackNames);
                         mSongListView.setAdapter(adapter);
-
-                        for (Track track : tracks ){
-                            Log.d(TAG, "Name: " + track.getName());
-                        }
                     }
                 });
             }

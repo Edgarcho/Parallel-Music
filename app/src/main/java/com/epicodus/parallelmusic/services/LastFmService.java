@@ -1,5 +1,7 @@
 package com.epicodus.parallelmusic.services;
 
+import android.util.Log;
+
 import com.epicodus.parallelmusic.ui.Constants;
 import com.epicodus.parallelmusic.models.Track;
 
@@ -56,12 +58,8 @@ public class LastFmService {
                 String artist = singleTrackJSON.getString("artist");
                 String website = singleTrackJSON.getString("url");
                 double listeners = singleTrackJSON.getDouble("listeners");
-                ArrayList<String> imageUrl = new ArrayList<>();
-                JSONArray imageUrlJSON = singleTrackJSON.getJSONArray("image");
-                for (int y = 0; y < imageUrlJSON.length(); y++) {
-                    imageUrl.add(imageUrlJSON.getJSONObject(y).getString("#text"));
-                }
-                Track track = new Track(name, artist, website, listeners, imageUrl);
+                String image = singleTrackJSON.getJSONArray("image").getJSONObject(3).getString("#text");
+                Track track = new Track(name, artist, website, listeners, image);
                 tracks.add(track);
             }
         } catch (IOException e) {
