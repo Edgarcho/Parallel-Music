@@ -3,18 +3,18 @@ package com.epicodus.parallelmusic.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.epicodus.parallelmusic.R;
+import com.epicodus.parallelmusic.adapters.TrackListAdapter;
 import com.epicodus.parallelmusic.models.Track;
 import com.epicodus.parallelmusic.services.LastFmService;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.Call;
@@ -23,7 +23,8 @@ import okhttp3.Response;
 
 public class TrackSearchActivity extends AppCompatActivity {
     @BindView(R.id.songTextView) TextView mSongTextView;
-    @BindView(R.id.songListView) ListView mSongListView;
+    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
+    private TrackListAdapter mAdapter;
 
     public ArrayList<Track> tracks = new ArrayList<>();
 
@@ -53,12 +54,11 @@ public class TrackSearchActivity extends AppCompatActivity {
                 TrackSearchActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        String[] trackNames = new String[tracks.size()];
-                        for (int i = 0; i < trackNames.length; i++) {
-                            trackNames[i] = tracks.get(i).getName();
-                        }
-                        ArrayAdapter adapter = new ArrayAdapter(TrackSearchActivity.this, android.R.layout.simple_list_item_1, trackNames);
-                        mSongListView.setAdapter(adapter);
+                        mAdapter = new TrackListAdapter(getApplicationContext(), tracks);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(TrackSearchActivity.this);
+                        mRecyclerView.setLayoutManager(layoutManager);
+                        mRecyclerView.setHasFixedSize(true);
                     }
                 });
             }

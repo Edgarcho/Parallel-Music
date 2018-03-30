@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(view == mSearchTrackButton) {
             String song = mSongEditText.getText().toString();
             if(song.equals("")){
-                Toast toast= Toast.makeText(MainActivity.this,"Input invalid.. Please Try Again", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(MainActivity.this,"Input invalid.. Please Try Again", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL,0,0);
                 toast.show();
             }else {

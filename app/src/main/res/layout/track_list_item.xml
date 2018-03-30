@@ -3,6 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="5dp"
     >
     <ImageView
         android:layout_width="130dp"
@@ -16,8 +17,7 @@
         android:layout_width="match_parent"
         android:background="#ffffff"
         android:layout_height="match_parent"
-        android:padding="10dp">
-
+        >
         <TextView
             android:id="@+id/trackNameTextView"
             android:layout_width="wrap_content"
@@ -31,8 +31,6 @@
             android:id="@+id/artistTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBotton="true"
-            android:layout_alignParentRight="true"
             android:layout_below="@id/trackNameTextView"
             android:text="Artist"
             android:textSize="18sp"
