@@ -64,14 +64,15 @@ public class LastFmService {
                 for(int x = 0; x < imageJSON.length(); x++) {
                     images.add(imageJSON.getJSONObject(x).getString("#text"));
                 }
-                Log.d("ArrayImage", images.get(2));
-                if(images.isEmpty()){
-                    String image = "https://lastfm-img2.akamaized.net/i/u/174s/c6f59c1e5e7240a4c0d427abd71f3dbb.png";
-                    Track track = new Track(name, artist, website, listeners, image);
+                int imageCount = images.size();
+                //String image = String.valueOf(imageCount);
+                if(imageCount == 4 && "".equals(images.get(0))){
+                    String img = "https://lastfm-img2.akamaized.net/i/u/174s/c6f59c1e5e7240a4c0d427abd71f3dbb.png";
+                    Track track = new Track(name, artist, website, listeners, img);
                     tracks.add(track);
                 }else{
-                    String image = images.get(2);
-                    Track track = new Track(name, artist, website, listeners, image);
+                    String img = images.get(3);
+                    Track track = new Track(name, artist, website, listeners, img);
                     tracks.add(track);
                 }
             }
