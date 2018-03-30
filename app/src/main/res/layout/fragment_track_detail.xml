@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -64,14 +65,48 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/webTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/listenerTextView"
                 android:layout_alignStart="@+id/listenerTextView"
                 android:layout_below="@+id/listenerTextView"
                 android:layout_marginTop="25dp"
-                android:text="TextView" />
+                android:text="View Online"
+                android:drawableTop="@mipmap/ic_web"
+                android:drawablePadding="4dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <ImageButton
+                android:id="@+id/saveTrackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/webTextView"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/listenerTextView"
+                android:layout_toRightOf="@+id/listenerTextView"
+                android:background="@color/colorTextIcons"
+                android:src="@mipmap/ic_like"
+                />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/webTextView"
+                android:layout_alignBottom="@+id/webTextView"
+                android:layout_alignEnd="@+id/saveTrackButton"
+                android:layout_alignLeft="@+id/saveTrackButton"
+                android:layout_alignRight="@+id/saveTrackButton"
+                android:layout_alignStart="@+id/saveTrackButton"
+                android:text="Save"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
