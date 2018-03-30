@@ -58,7 +58,7 @@ public class LastFmService {
                 String artist = singleTrackJSON.getString("artist");
                 String website = singleTrackJSON.getString("url");
                 double listeners = singleTrackJSON.getDouble("listeners");
-                String image = singleTrackJSON.getJSONArray("image").getJSONObject(3).getString("#text");
+                String image = singleTrackJSON.getJSONArray("image").getJSONObject(2).getString("#text");
                 Track track = new Track(name, artist, website, listeners, image);
                 tracks.add(track);
             }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.epicodus.parallelmusic.R;
 import com.epicodus.parallelmusic.models.Track;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -58,8 +59,9 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.Trac
         }
 
         public void bindTrack(Track track){
-           mTrackNameTextView.setText(track.getName());
-           mArtistTextView.setText(track.getArtist());
+            Picasso.with(mContext).load(track.getImageUrl()).into(mTrackImageView);
+            mTrackNameTextView.setText(track.getName());
+            mArtistTextView.setText(track.getArtist());
         }
     }
 }
