@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL,0,0);
                 toast.show();
             }else {
-                Intent intent = new Intent(MainActivity.this, TrackSearchActivity.class);
+                Intent intent = new Intent(MainActivity.this, TrackListActivity.class);
                 intent.putExtra("song", song);
                 startActivity(intent);
             }

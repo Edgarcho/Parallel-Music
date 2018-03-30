@@ -5,9 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.epicodus.parallelmusic.R;
 import com.epicodus.parallelmusic.adapters.TrackListAdapter;
@@ -21,7 +19,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class TrackSearchActivity extends AppCompatActivity {
+public class TrackListActivity extends AppCompatActivity {
     @BindView(R.id.songTextView) TextView mSongTextView;
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     private TrackListAdapter mAdapter;
@@ -51,12 +49,12 @@ public class TrackSearchActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) {
                 tracks = lastFmService.processResults(response);
 
-                TrackSearchActivity.this.runOnUiThread(new Runnable() {
+                TrackListActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         mAdapter = new TrackListAdapter(getApplicationContext(), tracks);
                         mRecyclerView.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(TrackSearchActivity.this);
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(TrackListActivity.this);
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);
                     }

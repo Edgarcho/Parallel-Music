@@ -10,8 +10,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    buildTypes.each{
-        it.buildConfigField('String','LASTFM_TOKEN', LastFmToken)
+    buildTypes.each {
+        it.buildConfigField('String', 'LASTFM_TOKEN', LastFmToken)
     }
     buildTypes {
         release {
