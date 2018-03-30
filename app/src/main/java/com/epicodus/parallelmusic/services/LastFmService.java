@@ -58,13 +58,22 @@ public class LastFmService {
                 String artist = singleTrackJSON.getString("artist");
                 String website = singleTrackJSON.getString("url");
                 double listeners = singleTrackJSON.getDouble("listeners");
+
                 ArrayList<String>images = new ArrayList<>();
-                JSONArray imageJqSON = singleTrackJSON.getJSONArray("image");
-                for(int y = 0; y < imageJSON.length(); y++);{
-                   images.add(imageJSON.getJSONObject(y).getString("#text"));
+                JSONArray imageJSON = singleTrackJSON.getJSONArray("image");
+                for(int x = 0; x < imageJSON.length(); x++) {
+                    images.add(imageJSON.getJSONObject(x).getString("#text"));
                 }
-                Track track = new Track(name, artist, website, listeners, image);
-                tracks.add(track);
+                Log.d("ArrayImage", images.get(2));
+                if(images.isEmpty()){
+                    String image = "https://lastfm-img2.akamaized.net/i/u/174s/c6f59c1e5e7240a4c0d427abd71f3dbb.png";
+                    Track track = new Track(name, artist, website, listeners, image);
+                    tracks.add(track);
+                }else{
+                    String image = images.get(2);
+                    Track track = new Track(name, artist, website, listeners, image);
+                    tracks.add(track);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
