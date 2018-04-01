@@ -1,6 +1,7 @@
 package com.epicodus.parallelmusic.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,10 @@ import android.widget.TextView;
 
 import com.epicodus.parallelmusic.R;
 import com.epicodus.parallelmusic.models.Track;
+import com.epicodus.parallelmusic.ui.TrackDetailFragment;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -45,7 +49,7 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.Trac
         return mTracks.size();
     }
 
-    public class TrackViewHolder extends RecyclerView.ViewHolder{
+    public class TrackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.trackImageView) ImageView mTrackImageView;
         @BindView(R.id.trackNameTextView) TextView mTrackNameTextView;
         @BindView(R.id.artistTextView) TextView mArtistTextView;
@@ -56,12 +60,22 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.Trac
             super (itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            itemView.setOnClickListener(this);
         }
 
         public void bindTrack(Track track){
             Picasso.with(mContext).load(track.getImageUrl()).into(mTrackImageView);
             mTrackNameTextView.setText(track.getName());
             mArtistTextView.setText(track.getArtist());
+        }
+
+        @Override
+        public void onClick(View view) {
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(mContext, TrackDetailFragment.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("tracks", Parcels.wrap(mTracks));
+            mContext.startActivity(intent);
         }
     }
 }
