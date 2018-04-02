@@ -1,6 +1,7 @@
 package com.epicodus.parallelmusic.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +24,7 @@ public class TrackListActivity extends AppCompatActivity {
     @BindView(R.id.songTextView) TextView mSongTextView;
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     private TrackListAdapter mAdapter;
+
 
     public ArrayList<Track> tracks = new ArrayList<>();
 

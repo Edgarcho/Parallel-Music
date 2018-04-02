@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "566908197027",
+    "firebase_url": "https://parallelmusic-f0966.firebaseio.com",
+    "project_id": "parallelmusic-f0966",
+    "storage_bucket": "parallelmusic-f0966.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566908197027:android:5cbe458ad06d048a",
+        "android_client_info": {
+          "package_name": "com.epicodus.parallelmusic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566908197027-pllaoe0eousal1kkkjla1pjo7crtshck.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epicodus.parallelmusic",
+            "certificate_hash": "b475abd5e3534e8ab1ecc4727256add69fcc067c"
+          }
+        },
+        {
+          "client_id": "566908197027-016t4cbg9bvstd93djlmd13f1fpaeive.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjfE84it0HwmenFZJUicM2iOQigYZMyMk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "566908197027-016t4cbg9bvstd93djlmd13f1fpaeive.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
