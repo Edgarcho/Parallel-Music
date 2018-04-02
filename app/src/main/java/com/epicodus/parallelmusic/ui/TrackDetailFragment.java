@@ -1,6 +1,8 @@
 package com.epicodus.parallelmusic.ui;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,7 +25,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TrackDetailFragment extends Fragment {
+public class TrackDetailFragment extends Fragment implements View.OnClickListener{
     @BindView(R.id.trackDetailImageView) ImageView mTrackImage;
     @BindView(R.id.trackNameDetailTextView) TextView mTrackName;
     @BindView(R.id.trackArtistDetailTextView) TextView mTrackArtist;
@@ -61,9 +63,16 @@ public class TrackDetailFragment extends Fragment {
         mTrackName.setText(mTrack.getName());
         mTrackArtist.setText(mTrack.getArtist());
         mTrackListener.setText(Double.toString(mTrack.getListeners()));
-        mWebsite.setText(mTrack.getWebsite());
+        mWebsite.setOnClickListener(this);
 
         return view;
+    }
+    @Override
+    public void onClick(View v){
+        if(v == mWebsite){
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mTrack.getWebsite()));
+            startActivity(webIntent);
+        }
     }
 
 }
