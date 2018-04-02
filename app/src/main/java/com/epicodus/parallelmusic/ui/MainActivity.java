@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -14,8 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.epicodus.parallelmusic.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,17 +29,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.appNameTextView) TextView mAppNameTextView;
     @BindView(R.id.songEditText) EditText mSongEditText;
 
-    private DatabaseReference mSearchedSongRefeerence;
+    private DatabaseReference mSearchedSongReference;
+    private ValueEventListener mSearchedSongReferenceListener;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-       mSearchedSongRefeerence = FirebaseDatabase
+       mSearchedSongReference = FirebaseDatabase
                .getInstance()
                .getReference()
                .child(Constants.FIREBASE_CHILD_SEARCHED_SONG);
+
+       mSearchedSongReference.addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(DataSnapshot dataSnapshot) {
+               for (DataSnapshot songSnapshot : dataSnapshot.getChildren()){
+                   String song = songSnapshot.getValue().toString();
+
+                   Log.d("Song Update", "song: " + song);
+               }
+           }
+
+           @Override
+           public void onCancelled(DatabaseError databaseError) {
+
+           }
+       });
 
         Typeface painterFont = Typeface.createFromAsset(getAssets(), "fonts/painter.ttf");
         mAppNameTextView.setTypeface(painterFont);
@@ -61,6 +82,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void savedSongToFirebase(String track){
-       mSearchedSongRefeerence.push().setValue(track);
+       mSearchedSongReference.push().setValue(track);
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        mSearchedSongReference.removeEventListener(mSearchedSongReferenceListener);
     }
 }
