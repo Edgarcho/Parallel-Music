@@ -10,10 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.epicodus.parallelmusic.R;
 import com.epicodus.parallelmusic.models.Track;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -64,6 +68,7 @@ public class TrackDetailFragment extends Fragment implements View.OnClickListene
         mTrackArtist.setText(mTrack.getArtist());
         mTrackListener.setText(Double.toString(mTrack.getListeners()));
         mWebsite.setOnClickListener(this);
+        mSaveTrackButton.setOnClickListener(this);
 
         return view;
     }
@@ -72,6 +77,13 @@ public class TrackDetailFragment extends Fragment implements View.OnClickListene
         if(v == mWebsite){
             Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mTrack.getWebsite()));
             startActivity(webIntent);
+        }
+        if(v == mSaveTrackButton){
+            DatabaseReference trackRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_TRACKS);
+            trackRef.push().setValue(mSaveTrackButton);
+            Toast.makeText(getContext(),"Saved", Toast.LENGTH_SHORT).show();
         }
     }
 
