@@ -12,5 +12,5 @@ public class Constants {
     public static final String LASTFM_SONG_QUERY_PARAMETER = "track";
     public static final String LASTFM_FORMAT_PARAMETER = "json";
     public static final String FIREBASE_CHILD_SEARCHED_SONG = "searchedSong";
-
+    public static final String FIREBASE_CHILD_TRACKS = "tracks";
 }
