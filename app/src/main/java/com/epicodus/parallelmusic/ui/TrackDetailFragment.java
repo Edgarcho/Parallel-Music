@@ -2,7 +2,6 @@ package com.epicodus.parallelmusic.ui;
 
 
 import android.os.Bundle;
-import android.os.Parcel;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,7 @@ import com.epicodus.parallelmusic.models.Track;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
-import org.w3c.dom.Text;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,11 +25,14 @@ import butterknife.ButterKnife;
  */
 public class TrackDetailFragment extends Fragment {
     @BindView(R.id.trackDetailImageView) ImageView mTrackImage;
-    @BindView(R.id.trackNameTextView) TextView mTrackName;
+    @BindView(R.id.trackNameDetailTextView) TextView mTrackName;
     @BindView(R.id.trackArtistDetailTextView) TextView mTrackArtist;
     @BindView(R.id.listenerTextView) TextView mTrackListener;
     @BindView(R.id.webTextView) TextView mWebsite;
-    @BindView(R.id.saveTrackButton) ImageButton mSaveTrack;
+    @BindView(R.id.saveTrackButton) ImageButton mSaveTrackButton;
+
+    private static final int MAX_WIDTH = 300;
+    private static final int MAX_HEIGHT = 300;
 
     private Track mTrack;
 
@@ -54,7 +56,7 @@ public class TrackDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_track_detail, container, false);
         ButterKnife.bind(this, view);
 
-        Picasso.with(view.getContext()).load(mTrack.getImageUrl()).into(mTrackImage);
+        Picasso.with(view.getContext()).load(mTrack.getImageUrl()).resize(MAX_WIDTH, MAX_HEIGHT).into(mTrackImage);
 
         mTrackName.setText(mTrack.getName());
         mTrackArtist.setText(mTrack.getArtist());

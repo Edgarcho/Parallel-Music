@@ -1,5 +1,4 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,7 +24,7 @@
             android:background="@color/colorTextIcons">
 
             <TextView
-                android:id="@+id/trackNameDetailtextView"
+                android:id="@+id/trackNameDetailTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -43,9 +42,9 @@
                 android:id="@+id/trackArtistDetailTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/trackNameDetailtextView"
-                android:layout_alignStart="@+id/trackNameDetailtextView"
-                android:layout_below="@+id/trackNameDetailtextView"
+                android:layout_alignLeft="@+id/trackNameDetailTextView"
+                android:layout_alignStart="@+id/trackNameDetailTextView"
+                android:layout_below="@+id/trackNameDetailTextView"
                 android:layout_marginTop="16dp"
                 android:text="Artist"
                 android:textColor="@color/colorPrimaryDark"

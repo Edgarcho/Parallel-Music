@@ -6,8 +6,12 @@ import android.os.Bundle;
 
 import com.epicodus.parallelmusic.R;
 import com.epicodus.parallelmusic.adapters.TrackPagerAdapter;
+import com.epicodus.parallelmusic.models.Track;
 
-import org.parceler.Parcel;
+
+import org.parceler.Parcels;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +27,7 @@ public class TrackDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_track_detail);
         ButterKnife.bind(this);
 
-        mTracks = Parcel.unwrap(getIntent().getParcelableArrayExtra("tracks"));
+        mTracks = Parcels.unwrap(getIntent().getParcelableExtra("tracks"));
         int startingPosition = getIntent().getIntExtra("position", 0);
 
         adapterViewPager = new TrackPagerAdapter(getSupportFragmentManager(), mTracks);

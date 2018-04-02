@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.epicodus.parallelmusic.R;
 import com.epicodus.parallelmusic.models.Track;
+import com.epicodus.parallelmusic.ui.TrackDetailActivity;
 import com.epicodus.parallelmusic.ui.TrackDetailFragment;
 import com.squareup.picasso.Picasso;
 
@@ -26,6 +27,9 @@ import butterknife.ButterKnife;
  */
 
 public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.TrackViewHolder> {
+    private static final int MAX_WIDTH = 200;
+    private static final int MAX_HEIGHT = 200;
+
     private ArrayList<Track> mTracks = new ArrayList<>();
     private Context mContext;
 
@@ -49,7 +53,7 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.Trac
         return mTracks.size();
     }
 
-    public class TrackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class TrackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.trackImageView) ImageView mTrackImageView;
         @BindView(R.id.trackNameTextView) TextView mTrackNameTextView;
         @BindView(R.id.artistTextView) TextView mArtistTextView;
@@ -64,7 +68,10 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.Trac
         }
 
         public void bindTrack(Track track){
-            Picasso.with(mContext).load(track.getImageUrl()).into(mTrackImageView);
+            Picasso.with(mContext)
+                    .load(track.getImageUrl())
+                    .resize(MAX_WIDTH, MAX_HEIGHT)
+                    .into(mTrackImageView);
             mTrackNameTextView.setText(track.getName());
             mArtistTextView.setText(track.getArtist());
         }
@@ -72,8 +79,8 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.Trac
         @Override
         public void onClick(View view) {
             int itemPosition = getLayoutPosition();
-            Intent intent = new Intent(mContext, TrackDetailFragment.class);
-            intent.putExtra("position", itemPosition);
+            Intent intent = new Intent(mContext, TrackDetailActivity.class);
+            intent.putExtra("position", itemPosition + "");
             intent.putExtra("tracks", Parcels.wrap(mTracks));
             mContext.startActivity(intent);
         }
