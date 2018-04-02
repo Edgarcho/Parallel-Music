@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import okhttp3.Call;
@@ -57,7 +58,7 @@ public class LastFmService {
                 String name = singleTrackJSON.getString("name");
                 String artist = singleTrackJSON.getString("artist");
                 String website = singleTrackJSON.getString("url");
-                double listeners = singleTrackJSON.getDouble("listeners");
+                Double listeners = singleTrackJSON.getDouble("listeners");
                 ArrayList<String>images = new ArrayList<>();
                 JSONArray imageJSON = singleTrackJSON.getJSONArray("image");
                 for(int x = 0; x < imageJSON.length(); x++) {

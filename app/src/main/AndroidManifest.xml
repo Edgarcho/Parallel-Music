@@ -46,7 +46,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ui.TrackDetailActivity"></activity>
+        <activity android:name=".ui.TrackDetailActivity">
+        </activity>
     </application>
 
 </manifest>

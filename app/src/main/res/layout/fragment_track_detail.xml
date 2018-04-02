@@ -21,7 +21,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorTextIcons">
+            android:background="#f5f6ea">
 
             <TextView
                 android:id="@+id/trackNameDetailTextView"
@@ -34,7 +34,7 @@
                 android:layout_marginStart="35dp"
                 android:layout_marginTop="26dp"
                 android:text="Track Name"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorPrimaryText"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
                 android:layout_alignLeft="@+id/trackNameDetailTextView"
                 android:layout_alignStart="@+id/trackNameDetailTextView"
                 android:layout_below="@+id/trackNameDetailTextView"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="28dp"
                 android:text="Artist"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="24sp"
@@ -55,41 +55,41 @@
                 android:id="@+id/listenerTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/trackArtistDetailTextView"
-                android:layout_alignStart="@+id/trackArtistDetailTextView"
-                android:layout_below="@+id/trackArtistDetailTextView"
-                android:layout_marginTop="21dp"
-                android:text="1480140-525"
+                android:layout_alignBaseline="@+id/totalTextView"
+                android:layout_alignBottom="@+id/totalTextView"
+                android:layout_marginLeft="22dp"
+                android:layout_marginStart="22dp"
+                android:layout_toEndOf="@+id/totalTextView"
+                android:layout_toRightOf="@+id/totalTextView"
+                android:text="number"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="18sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/webTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/listenerTextView"
-                android:layout_alignStart="@+id/listenerTextView"
-                android:layout_below="@+id/listenerTextView"
+                android:layout_alignLeft="@+id/totalTextView"
+                android:layout_alignStart="@+id/totalTextView"
+                android:layout_below="@+id/totalTextView"
                 android:layout_marginTop="25dp"
-                android:text="View Online"
-                android:drawableTop="@mipmap/ic_web"
                 android:drawablePadding="4dp"
+                android:drawableTop="@mipmap/ic_web"
+                android:text="View Online"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="15sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/saveTrackButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/listenerTextView"
+                android:layout_alignStart="@+id/listenerTextView"
                 android:layout_alignTop="@+id/webTextView"
-                android:layout_marginLeft="12dp"
-                android:layout_marginStart="12dp"
-                android:layout_toEndOf="@+id/listenerTextView"
-                android:layout_toRightOf="@+id/listenerTextView"
-                android:background="@color/colorTextIcons"
-                android:src="@mipmap/ic_like"
-                />
+                android:background="#f5f6ea"
+                android:src="@mipmap/ic_like" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -106,6 +106,18 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="15sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/totalTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/trackArtistDetailTextView"
+                android:layout_alignStart="@+id/trackArtistDetailTextView"
+                android:layout_below="@+id/trackArtistDetailTextView"
+                android:layout_marginTop="17dp"
+                android:text="Total Listener: "
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="24sp" />
 
         </RelativeLayout>
 

@@ -13,13 +13,13 @@ public class Track {
     String name;
     String artist;
     String website;
-    double listeners;
+    Double listeners;
     String imageUrl;
 
 
     public Track(){}
 
-    public Track(String name, String artist, String website, double listeners, String imageUrl){
+    public Track(String name, String artist, String website, Double listeners, String imageUrl){
         this.name = name;
         this.artist = artist;
         this.website = website;
@@ -35,7 +35,7 @@ public class Track {
     public String getWebsite(){
         return website;
     }
-    public double getListeners(){
+    public Double getListeners(){
         return listeners;
     }
     public String getImageUrl(){
