@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.epicodus.parallelmusic.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,16 +25,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.appNameTextView) TextView mAppNameTextView;
     @BindView(R.id.songEditText) EditText mSongEditText;
 
-    private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor mEditor;
+    private DatabaseReference mSearchedSongRefeerence;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mEditor = mSharedPreferences.edit();
+       mSearchedSongRefeerence = FirebaseDatabase
+               .getInstance()
+               .getReference()
+               .child(Constants.FIREBASE_CHILD_SEARCHED_SONG);
 
         Typeface painterFont = Typeface.createFromAsset(getAssets(), "fonts/painter.ttf");
         mAppNameTextView.setTypeface(painterFont);
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL,0,0);
                 toast.show();
             }else {
+                savedSongToFirebase(song);
                 Intent intent = new Intent(MainActivity.this, TrackListActivity.class);
                 intent.putExtra("song", song);
                 startActivity(intent);
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void addToSharedPreferences(String track){
-        mEditor.putString(Constants.PREFERENCES_SONG_KEY, track).apply();
+    private void savedSongToFirebase(String track){
+       mSearchedSongRefeerence.push().setValue(track);
     }
 }
