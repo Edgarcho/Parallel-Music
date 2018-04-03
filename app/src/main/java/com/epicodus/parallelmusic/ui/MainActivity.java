@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.searchTrackButton) Button mSearchTrackButton;
     @BindView(R.id.appNameTextView) TextView mAppNameTextView;
     @BindView(R.id.songEditText) EditText mSongEditText;
+    @BindView(R.id.saveTrackButton) Button mSavedTrackButton;
 
     private DatabaseReference mSearchedSongReference;
     private ValueEventListener mSearchedSongReferenceListener;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        mSavedTrackButton.setOnClickListener(this);
 
        mSearchedSongReference = FirebaseDatabase
                .getInstance()
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if(view == mSearchTrackButton) {
+        if (view == mSearchTrackButton) {
             String song = mSongEditText.getText().toString();
             if(song.equals("")){
                 Toast toast = Toast.makeText(MainActivity.this,"Input invalid.. Please Try Again", Toast.LENGTH_SHORT);
@@ -78,6 +80,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("song", song);
                 startActivity(intent);
             }
+        }
+        if (view == mSavedTrackButton){
+            Intent intent = new Intent(MainActivity.this, SavedTrackListActivity.class);
+            startActivity(intent);
         }
     }
 
