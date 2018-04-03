@@ -44,6 +44,7 @@ public class SavedTrackListActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mFirebaseAdapter);
     }
+
     @Override
     protected void onDestroy(){
         super.onDestroy();

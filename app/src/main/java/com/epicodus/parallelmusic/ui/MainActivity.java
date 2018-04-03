@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.searchTrackButton) Button mSearchTrackButton;
     @BindView(R.id.appNameTextView) TextView mAppNameTextView;
     @BindView(R.id.songEditText) EditText mSongEditText;
-    @BindView(R.id.savedTracksButton) Button mSavedTracksButton;
+    @BindView(R.id.savedTrackButton) Button mSavedTrackButton;
 
     private DatabaseReference mSearchedSongReference;
     private ValueEventListener mSearchedSongReferenceListener;
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .getReference()
                 .child(Constants.FIREBASE_CHILD_SEARCHED_SONG);
 
-       mSearchedSongReferenceListener = mSearchedSongReference.addValueEventListener(new ValueEventListener() {
+       mSearchedSongReference.addValueEventListener(new ValueEventListener() {
            @Override
            public void onDataChange(DataSnapshot dataSnapshot) {
                for (DataSnapshot songSnapshot : dataSnapshot.getChildren()){
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAppNameTextView.setTypeface(painterFont);
 
         mSearchTrackButton.setOnClickListener(this);
-        mSavedTracksButton.setOnClickListener(this);
+        mSavedTrackButton.setOnClickListener(this);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-        if (view == mSavedTracksButton){
+        if (view == mSavedTrackButton){
             Intent intent = new Intent(MainActivity.this, SavedTrackListActivity.class);
             startActivity(intent);
         }

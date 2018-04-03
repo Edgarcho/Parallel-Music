@@ -53,7 +53,7 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/savedTracksButton"
+        android:id="@+id/savedTrackButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/searchTrackButton"
