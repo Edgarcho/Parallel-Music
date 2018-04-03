@@ -66,7 +66,7 @@ public class FirebaseTrackViewHolder extends RecyclerView.ViewHolder implements 
                 int itemPosition = getLayoutPosition();
 
                 Intent intent = new Intent(mContext, TrackDetailActivity.class);
-                intent.putExtra("position", itemPosition + "");
+                intent.putExtra("position", itemPosition);
                 intent.putExtra("tracks", Parcels.wrap(tracks));
 
                 mContext.startActivity(intent);

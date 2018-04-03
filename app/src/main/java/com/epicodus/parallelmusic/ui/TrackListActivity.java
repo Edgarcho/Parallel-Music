@@ -36,7 +36,7 @@ public class TrackListActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String song = intent.getStringExtra("song");
-        mSongTextView.setText("Searching for: " + song);
+        mSongTextView.setText("Searching: " + song);
         getSongs(song);
     }
     private void getSongs(String song){

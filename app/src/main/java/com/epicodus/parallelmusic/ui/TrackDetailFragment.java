@@ -61,7 +61,7 @@ public class TrackDetailFragment extends Fragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_track_detail, container, false);
         ButterKnife.bind(this, view);
 
-        Picasso.with(view.getContext()).load(mTrack.getImageUrl()).resize(MAX_WIDTH, MAX_HEIGHT).into(mTrackImage);
+        Picasso.with(view.getContext()).load(mTrack.getImageUrl()).resize(MAX_WIDTH, MAX_HEIGHT).centerCrop().into(mTrackImage);
 
         mTrackName.setText(mTrack.getName());
         mTrackArtist.setText(mTrack.getArtist());
