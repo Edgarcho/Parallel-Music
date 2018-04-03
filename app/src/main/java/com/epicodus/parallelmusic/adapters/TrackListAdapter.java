@@ -72,6 +72,7 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.Trac
                     .load(track.getImageUrl())
                     .resize(MAX_WIDTH, MAX_HEIGHT)
                     .into(mTrackImageView);
+
             mTrackNameTextView.setText(track.getName());
             mArtistTextView.setText(track.getArtist());
         }
@@ -80,7 +81,7 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.Trac
         public void onClick(View view) {
             int itemPosition = getLayoutPosition();
             Intent intent = new Intent(mContext, TrackDetailActivity.class);
-            intent.putExtra("position", itemPosition);
+            intent.putExtra("position", itemPosition + "");
             intent.putExtra("tracks", Parcels.wrap(mTracks));
             mContext.startActivity(intent);
         }

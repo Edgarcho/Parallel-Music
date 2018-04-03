@@ -24,6 +24,7 @@ public class SavedTrackListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_track_search);
         ButterKnife.bind(this);
         mTrackReference = FirebaseDatabase

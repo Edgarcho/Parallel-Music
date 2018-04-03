@@ -1,7 +1,5 @@
 package com.epicodus.parallelmusic.services;
 
-import android.util.Log;
-
 import com.epicodus.parallelmusic.ui.Constants;
 import com.epicodus.parallelmusic.models.Track;
 
@@ -21,15 +19,14 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
-/**
- * Created by Guest on 3/23/18.
- */
 
 public class LastFmService {
 
     public static void searchTrackButton(String song, Callback callback){
+
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
+
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.LASTFM_BASE_TRACKSEARCH_URL).newBuilder();
         urlBuilder.addQueryParameter(Constants.LASTFM_SONG_QUERY_PARAMETER, song);
         urlBuilder.addQueryParameter("api_key",Constants.LASTFM_TOKEN);
@@ -43,7 +40,6 @@ public class LastFmService {
         Call call = client.newCall(request);
         call.enqueue(callback);
     }
-
     public ArrayList<Track> processResults(Response response) {
         ArrayList<Track> tracks = new ArrayList<>();
 
@@ -58,8 +54,7 @@ public class LastFmService {
                 String name = singleTrackJSON.getString("name");
                 String artist = singleTrackJSON.getString("artist");
                 String website = singleTrackJSON.getString("url");
-                int listeners = singleTrackJSON.getInt("listeners");
-                String listener = String.valueOf(listeners);
+                long listeners = singleTrackJSON.getLong("listeners");
                 ArrayList<String>images = new ArrayList<>();
                 JSONArray imageJSON = singleTrackJSON.getJSONArray("image");
                 for(int x = 0; x < imageJSON.length(); x++) {
@@ -68,11 +63,11 @@ public class LastFmService {
                 int imageCount = images.size();
                 if(imageCount == 4 && "".equals(images.get(0))){
                     String img = "https://lastfm-img2.akamaized.net/i/u/174s/c6f59c1e5e7240a4c0d427abd71f3dbb.png";
-                    Track track = new Track(name, artist, website, listener, img);
+                    Track track = new Track(name, artist, website, listeners, img);
                     tracks.add(track);
                 }else{
                     String img = images.get(3);
-                    Track track = new Track(name, artist, website, listener, img);
+                    Track track = new Track(name, artist, website, listeners, img);
                     tracks.add(track);
                 }
             }

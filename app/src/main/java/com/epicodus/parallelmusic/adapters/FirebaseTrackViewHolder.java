@@ -22,9 +22,6 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
-/**
- * Created by Guest on 4/2/18.
- */
 
 public class FirebaseTrackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private static final int MAX_WIDTH = 200;
@@ -69,7 +66,7 @@ public class FirebaseTrackViewHolder extends RecyclerView.ViewHolder implements 
                 int itemPosition = getLayoutPosition();
 
                 Intent intent = new Intent(mContext, TrackDetailActivity.class);
-                intent.putExtra("position", itemPosition);
+                intent.putExtra("position", itemPosition + "");
                 intent.putExtra("tracks", Parcels.wrap(tracks));
 
                 mContext.startActivity(intent);

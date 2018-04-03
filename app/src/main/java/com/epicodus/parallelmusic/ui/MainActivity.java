@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .getReference()
                 .child(Constants.FIREBASE_CHILD_SEARCHED_SONG);
 
-       mSearchedSongReference.addValueEventListener(new ValueEventListener() {
+      mSearchedSongReferenceListener = mSearchedSongReference.addValueEventListener(new ValueEventListener() {
            @Override
            public void onDataChange(DataSnapshot dataSnapshot) {
                for (DataSnapshot songSnapshot : dataSnapshot.getChildren()){
@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
         }
-
         if (view == mSavedTrackButton){
             Intent intent = new Intent(MainActivity.this, SavedTrackListActivity.class);
             startActivity(intent);
