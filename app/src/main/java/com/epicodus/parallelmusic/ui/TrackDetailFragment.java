@@ -82,7 +82,7 @@ public class TrackDetailFragment extends Fragment implements View.OnClickListene
             DatabaseReference trackRef = FirebaseDatabase
                     .getInstance()
                     .getReference(Constants.FIREBASE_CHILD_TRACKS);
-            trackRef.push().setValue(mSaveTrackButton);
+            trackRef.push().setValue(mTrack);
             Toast.makeText(getContext(),"Saved", Toast.LENGTH_SHORT).show();
         }
     }
