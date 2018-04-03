@@ -66,7 +66,7 @@ public class TrackDetailFragment extends Fragment implements View.OnClickListene
 
         mTrackName.setText(mTrack.getName());
         mTrackArtist.setText(mTrack.getArtist());
-        mTrackListener.setText(Double.toString(mTrack.getListeners()));
+        mTrackListener.setText(mTrack.getListeners());
         mWebsite.setOnClickListener(this);
         mSaveTrackButton.setOnClickListener(this);
 
