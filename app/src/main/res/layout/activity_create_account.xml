@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF18192E">
@@ -65,7 +64,7 @@
         android:layout_alignLeft="@+id/emailEditText"
         android:layout_alignStart="@+id/emailEditText"
         android:layout_below="@+id/emailEditText"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="20dp"
         android:background="@color/colorTextIcons"
         android:ems="10"
         android:hint="Password"
@@ -110,13 +109,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp"
-        android:text="TextView"
+        android:layout_marginBottom="15dp"
+        android:text="Already have an account? Log in here!"
         android:textAlignment="center"
         android:textColor="@color/colorTextIcons"
         android:textSize="20sp"
-        android:textStyle="bold"
-        tools:text='"Already have an account? Log in here!"' />
+        android:textStyle="bold" />
 
 
 </RelativeLayout>
