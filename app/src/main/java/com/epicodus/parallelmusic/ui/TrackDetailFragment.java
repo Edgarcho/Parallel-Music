@@ -65,7 +65,7 @@ public class TrackDetailFragment extends Fragment implements View.OnClickListene
 
         mTrackName.setText(mTrack.getName());
         mTrackArtist.setText(mTrack.getArtist());
-        mTrackListener.setText(Double.toString(mTrack.getListeners()));
+        mTrackListener.setText(mTrack.getListeners());
         mWebsite.setOnClickListener(this);
         mSaveTrackButton.setOnClickListener(this);
 
@@ -81,7 +81,7 @@ public class TrackDetailFragment extends Fragment implements View.OnClickListene
             DatabaseReference trackRef = FirebaseDatabase
                     .getInstance()
                     .getReference(Constants.FIREBASE_CHILD_TRACKS);
-            trackRef.push().setValue(mSaveTrackButton);
+            trackRef.push().setValue(mTrack);
             Toast.makeText(getContext(),"Saved", Toast.LENGTH_SHORT).show();
         }
     }

@@ -25,29 +25,29 @@
             android:label="@string/track_activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity"></meta-data>
+                android:value=".ui.MainActivity" />
         </activity>
         <activity
             android:name=".ui.MostPopularActivity"
             android:label="@string/popular_activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity"></meta-data>
+                android:value=".ui.MainActivity" />
         </activity>
         <activity
             android:name=".ui.AboutActivity"
             android:label="@string/about_activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity"></meta-data>
+                android:value=".ui.MainActivity" />
         </activity>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ui.TrackDetailActivity">
-        </activity>
+        <activity android:name=".ui.TrackDetailActivity" />
+        <activity android:name=".ui.SavedTrackListActivity"></activity>
     </application>
 
 </manifest>
