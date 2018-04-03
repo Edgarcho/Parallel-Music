@@ -28,28 +28,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.searchTrackButton) Button mSearchTrackButton;
     @BindView(R.id.appNameTextView) TextView mAppNameTextView;
     @BindView(R.id.songEditText) EditText mSongEditText;
-    @BindView(R.id.saveTrackButton) Button mSavedTrackButton;
+    @BindView(R.id.savedTracksButton) Button mSavedTracksButton;
 
     private DatabaseReference mSearchedSongReference;
     private ValueEventListener mSearchedSongReferenceListener;
 
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        mSavedTrackButton.setOnClickListener(this);
+        mSearchedSongReference = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child(Constants.FIREBASE_CHILD_SEARCHED_SONG);
 
-       mSearchedSongReference = FirebaseDatabase
-               .getInstance()
-               .getReference()
-               .child(Constants.FIREBASE_CHILD_SEARCHED_SONG);
-
-       mSearchedSongReference.addValueEventListener(new ValueEventListener() {
+       mSearchedSongReferenceListener = mSearchedSongReference.addValueEventListener(new ValueEventListener() {
            @Override
            public void onDataChange(DataSnapshot dataSnapshot) {
                for (DataSnapshot songSnapshot : dataSnapshot.getChildren()){
                    String song = songSnapshot.getValue().toString();
-
                    Log.d("Song Update", "song: " + song);
                }
            }
@@ -60,10 +54,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
            }
        });
 
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
         Typeface painterFont = Typeface.createFromAsset(getAssets(), "fonts/painter.ttf");
         mAppNameTextView.setTypeface(painterFont);
 
         mSearchTrackButton.setOnClickListener(this);
+        mSavedTracksButton.setOnClickListener(this);
     }
 
     @Override
@@ -81,7 +80,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
         }
-        if (view == mSavedTrackButton){
+
+        if (view == mSavedTracksButton){
             Intent intent = new Intent(MainActivity.this, SavedTrackListActivity.class);
             startActivity(intent);
         }
