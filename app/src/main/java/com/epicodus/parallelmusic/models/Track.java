@@ -15,6 +15,7 @@ public class Track {
     String website;
     long listeners;
     String imageUrl;
+    private String pushId;
 
 
     public Track(){}
@@ -40,6 +41,13 @@ public class Track {
     }
     public String getImageUrl(){
         return imageUrl;
+    }
+
+    public String getPushId(){
+        return pushId;
+    }
+    public void setPushId(String pushId){
+        this.pushId = pushId;
     }
 }
 
