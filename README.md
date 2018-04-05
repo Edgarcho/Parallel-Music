@@ -1,7 +1,6 @@
 # Parallel Music
 
-A mobile application that can search for song info and provide link to song website from LastFm website. The app can search for song in different languages. Users can save their favorite track.
-
+A mobile application that uses LastFm API to search for song info, website link and total listener count. The app can search for song in different languages. User can create an account and save their favorite songs.
 
 By Edgar Hernandez Ortiz
 
@@ -39,6 +38,7 @@ Add bottom nav-bar.
     * RecyclerView
     * Picasso
     * Parceler
+    * Firebase database
 
 ## Support and contact details
 
