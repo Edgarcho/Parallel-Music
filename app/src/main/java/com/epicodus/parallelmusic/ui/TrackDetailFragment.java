@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.epicodus.parallelmusic.R;
 import com.epicodus.parallelmusic.models.Track;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -78,10 +80,17 @@ public class TrackDetailFragment extends Fragment implements View.OnClickListene
             startActivity(webIntent);
         }
         if(v == mSaveTrackButton){
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
             DatabaseReference trackRef = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_TRACKS);
-            trackRef.push().setValue(mTrack);
+                    .getReference(Constants.FIREBASE_CHILD_TRACKS)
+                    .child(uid);
+            DatabaseReference pushRef = trackRef.push();
+            String pushId = pushRef.getKey();
+            mTrack.setPushId(pushId);
+            pushRef.setValue(mTrack);
+
             Toast.makeText(getContext(),"Saved", Toast.LENGTH_SHORT).show();
         }
     }
