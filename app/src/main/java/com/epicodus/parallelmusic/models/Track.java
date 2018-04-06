@@ -16,6 +16,7 @@ public class Track {
     long listeners;
     String imageUrl;
     private String pushId;
+    String index;
 
 
     public Track(){}
@@ -26,6 +27,7 @@ public class Track {
         this.website = website;
         this.listeners = listeners;
         this.imageUrl = imageUrl;
+        this.index = "not_specified";
     }
     public String getName(){
         return name;
@@ -42,13 +44,19 @@ public class Track {
     public String getImageUrl(){
         return imageUrl;
     }
-
     public String getPushId(){
         return pushId;
     }
     public void setPushId(String pushId){
         this.pushId = pushId;
     }
+    public String getIndex(){
+        return index;
+    }
+    public void setIndex(String index){
+        this.index = index;
+    }
+
 }
 
 
