@@ -29,16 +29,16 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback{
 
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-        if (source.getItemViewType() != target.getItemViewType()) {
+       // if (source.getItemViewType() != target.getItemViewType()) {
             return false;
-        }
-        mAdapter.onItemMove(source.getAdapterPosition(), target.getAdapterPosition());
-        return true;
+        //}
+       // mAdapter.onItemMove(source.getAdapterPosition(), target.getAdapterPosition());
+        //return true;
     }
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-        mAdapter.onItemMove(viewHolder.getAdapterPosition());
+       // mAdapter.onItemMove(viewHolder.getAdapterPosition());
 
     }
 }
