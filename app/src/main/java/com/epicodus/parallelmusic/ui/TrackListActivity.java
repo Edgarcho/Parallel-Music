@@ -21,23 +21,10 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class TrackListActivity extends AppCompatActivity {
-    @BindView(R.id.songTextView) TextView mSongTextView;
-    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
-    private TrackListAdapter mAdapter;
-
-
-    public ArrayList<Track> tracks = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track_search);
-        ButterKnife.bind(this);
-
-        Intent intent = getIntent();
-        String song = intent.getStringExtra("song");
-        mSongTextView.setText("Searching: " + song);
-        getSongs(song);
     }
 
 }

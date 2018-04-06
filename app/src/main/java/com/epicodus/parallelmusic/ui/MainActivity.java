@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.songEditText) EditText mSongEditText;
     @BindView(R.id.savedTrackButton) Button mSavedTrackButton;
 
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
+
     private DatabaseReference mSearchedSongReference;
     private ValueEventListener mSearchedSongReferenceListener;
 
@@ -46,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
 
         mSearchedSongReference = FirebaseDatabase
                 .getInstance()
@@ -128,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view == mSearchTrackButton) {
             String song = mSongEditText.getText().toString();
+            addToSharedPreferences(song);
             if(song.equals("")){
                 Toast toast = Toast.makeText(MainActivity.this,"Input invalid.. Please Try Again", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL,0,0);
@@ -147,6 +154,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void savedSongToFirebase(String track){
        mSearchedSongReference.push().setValue(track);
+    }
+
+    private void addToSharedPreferences(String song){
+        mEditor.putString(Constants.PREFERENCES_SONG_KEY, song).apply();
     }
 
     @Override

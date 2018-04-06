@@ -1,7 +1,10 @@
 package com.epicodus.parallelmusic.ui;
 
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -27,27 +31,47 @@ import okhttp3.Response;
  * A simple {@link Fragment} subclass.
  */
 public class TrackListFragment extends Fragment {
-    @BindView(R.id.songTextView) TextView mSongTextView;
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
-    private TrackListAdapter mAdapter;
-    public ArrayList<Track> tracks = new ArrayList<>();
+    @BindView(R.id.songTextView) TextView mSongTextView;
 
+    public ArrayList<Track> tracks = new ArrayList<>();
+    private TrackListAdapter mAdapter;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
+    private String mSong;
 
     public TrackListFragment() {
-        // Required empty public constructor
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        mEditor = mSharedPreferences.edit();
         setHasOptionsMenu(true);
 
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_track_list, container, false);
+        ButterKnife.bind(this, view);
+
+
+        mSong = mSharedPreferences.getString(Constants.PREFERENCES_SONG_KEY,null);
+        if(mSong != null){
+            mSongTextView.setText("Searching: " + mSong);
+            getSongs(mSong);
+        }
+        return view;
+    }
+
     private void getSongs(String song){
         final LastFmService lastFmService = new LastFmService();
+
         lastFmService.searchTrackButton(song, new Callback() {
+
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
@@ -69,13 +93,6 @@ public class TrackListFragment extends Fragment {
                 });
             }
         });
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_track_list, container, false);
     }
 
 }
