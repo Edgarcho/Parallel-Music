@@ -3,6 +3,7 @@ package com.epicodus.parallelmusic.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import com.epicodus.parallelmusic.R;
 import com.epicodus.parallelmusic.models.Track;
 import com.epicodus.parallelmusic.ui.Constants;
 import com.epicodus.parallelmusic.ui.TrackDetailActivity;
+import com.epicodus.parallelmusic.util.ItemTouchHelperViewHolder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,60 +27,48 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 
 
-public class FirebaseTrackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class FirebaseTrackViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
 
     View mView;
     Context mContext;
+    public ImageView mTrackImageView;
 
     public FirebaseTrackViewHolder(View itemView){
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
     }
 
     public void bindTrack(Track track){
-        ImageView trackImageView = mView.findViewById(R.id.trackImageView);
+        mTrackImageView = mView.findViewById(R.id.trackImageView);
         TextView trackNameTextView = mView.findViewById(R.id.trackNameTextView);
         TextView artistTextView = mView.findViewById(R.id.artistTextView);
 
         Picasso.with(mContext)
                 .load(track.getImageUrl())
                 .resize(MAX_WIDTH, MAX_HEIGHT)
-                .into(trackImageView);
+                .into(mTrackImageView);
 
         trackNameTextView.setText(track.getName());
         artistTextView.setText(track.getArtist());
     }
 
     @Override
-    public void onClick(View view){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
-        final ArrayList<Track> tracks = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_TRACKS).child(uid);
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+    public void onItemSelected() {
+      itemView.animate()
+              .alpha(0.7f)
+              .scaleX(0.9f)
+              .scaleY(0.9f)
+              .setDuration(500);
+    }
 
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    tracks.add(snapshot.getValue(Track.class));
-                }
-
-                int itemPosition = getLayoutPosition();
-
-                Intent intent = new Intent(mContext, TrackDetailActivity.class);
-                intent.putExtra("position", itemPosition);
-                intent.putExtra("tracks", Parcels.wrap(tracks));
-
-                mContext.startActivity(intent);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
+    @Override
+    public void onIemClear() {
+        itemView.animate()
+                .alpha(1f)
+                .scaleX(1f)
+                .scaleY(1f);
     }
 }
