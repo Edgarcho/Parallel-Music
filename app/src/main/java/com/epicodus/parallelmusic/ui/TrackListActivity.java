@@ -39,29 +39,5 @@ public class TrackListActivity extends AppCompatActivity {
         mSongTextView.setText("Searching: " + song);
         getSongs(song);
     }
-    private void getSongs(String song){
-        final LastFmService lastFmService = new LastFmService();
-        lastFmService.searchTrackButton(song, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
 
-            @Override
-            public void onResponse(Call call, Response response) {
-                tracks = lastFmService.processResults(response);
-
-                TrackListActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mAdapter = new TrackListAdapter(getApplicationContext(), tracks);
-                        mRecyclerView.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(TrackListActivity.this);
-                        mRecyclerView.setLayoutManager(layoutManager);
-                        mRecyclerView.setHasFixedSize(true);
-                    }
-                });
-            }
-        });
-    }
 }
