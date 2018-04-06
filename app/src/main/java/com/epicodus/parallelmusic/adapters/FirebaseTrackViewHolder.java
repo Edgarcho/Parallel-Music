@@ -25,19 +25,18 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 
 
-public class FirebaseTrackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public ImageView mTrackImageView;
+public class FirebaseTrackViewHolder extends RecyclerView.ViewHolder {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
 
     View mView;
     Context mContext;
+    public ImageView mTrackImageView;
 
     public FirebaseTrackViewHolder(View itemView){
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
     }
 
     public void bindTrack(Track track){
@@ -52,34 +51,5 @@ public class FirebaseTrackViewHolder extends RecyclerView.ViewHolder implements 
 
         trackNameTextView.setText(track.getName());
         artistTextView.setText(track.getArtist());
-    }
-
-    @Override
-    public void onClick(View view){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
-        final ArrayList<Track> tracks = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_TRACKS).child(uid);
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    tracks.add(snapshot.getValue(Track.class));
-                }
-
-                int itemPosition = getLayoutPosition();
-
-                Intent intent = new Intent(mContext, TrackDetailActivity.class);
-                intent.putExtra("position", itemPosition);
-                intent.putExtra("tracks", Parcels.wrap(tracks));
-
-                mContext.startActivity(intent);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
     }
 }
