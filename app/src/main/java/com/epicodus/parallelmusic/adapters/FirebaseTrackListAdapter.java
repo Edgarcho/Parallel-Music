@@ -1,6 +1,9 @@
 package com.epicodus.parallelmusic.adapters;
 
 import android.content.Context;
+import android.support.v4.view.MotionEventCompat;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.epicodus.parallelmusic.models.Track;
 import com.epicodus.parallelmusic.util.ItemTouchHelperAdapter;
@@ -36,7 +39,17 @@ public class FirebaseTrackListAdapter extends FirebaseRecyclerAdapter<Track, Fir
     }
 
     @Override
-    protected void populateViewHolder(FirebaseTrackViewHolder viewHolder, Track model, int position) {
+    protected void populateViewHolder(final FirebaseTrackViewHolder viewHolder, Track model, int position) {
+        viewHolder.bindTrack(model);
+        viewHolder.mTrackImageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                if(MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN){
+                    mOnStartDragListener.onStartDrag(viewHolder);
+                }
+                return false;
+            }
+        });
 
     }
 }

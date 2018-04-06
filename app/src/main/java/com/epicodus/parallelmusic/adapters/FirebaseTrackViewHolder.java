@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 
 public class FirebaseTrackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public ImageView mTrackImageView;
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
 
@@ -40,14 +41,14 @@ public class FirebaseTrackViewHolder extends RecyclerView.ViewHolder implements 
     }
 
     public void bindTrack(Track track){
-        ImageView trackImageView = mView.findViewById(R.id.trackImageView);
+        mTrackImageView = mView.findViewById(R.id.trackImageView);
         TextView trackNameTextView = mView.findViewById(R.id.trackNameTextView);
         TextView artistTextView = mView.findViewById(R.id.artistTextView);
 
         Picasso.with(mContext)
                 .load(track.getImageUrl())
                 .resize(MAX_WIDTH, MAX_HEIGHT)
-                .into(trackImageView);
+                .into(mTrackImageView);
 
         trackNameTextView.setText(track.getName());
         artistTextView.setText(track.getArtist());
