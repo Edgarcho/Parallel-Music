@@ -11,8 +11,9 @@
     <fragment
         android:id="@+id/fragmentTrackList"
         android:name="com.epicodus.parallelmusic.ui.TrackListFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="3"
         tools:layout="@layout/fragment_track_list" />
 
     <View android:background="@color/colorAccent"
@@ -24,7 +25,6 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="6">
-
     </FrameLayout>
 
 </LinearLayout>
