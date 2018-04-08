@@ -59,7 +59,7 @@ public class TrackDetailFragment extends Fragment implements View.OnClickListene
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        mTrack = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_TRACKS));
+        mTracks = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_TRACKS));
         mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
         mTrack = mTracks.get(mPosition);
     }
