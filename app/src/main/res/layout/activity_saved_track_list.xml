@@ -9,7 +9,6 @@
         android:name="com.epicodus.parallelmusic.ui.SavedTrackListFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:context=".ui.TrackListActivity"
-/>
+        tools:layout="@layout/fragment_track_list"/>
 
 </RelativeLayout>
