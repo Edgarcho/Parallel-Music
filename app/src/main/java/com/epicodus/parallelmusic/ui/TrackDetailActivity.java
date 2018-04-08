@@ -17,8 +17,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TrackDetailActivity extends AppCompatActivity {
-    @BindView(R.id.viewPager) ViewPager mViewPager;
     private TrackPagerAdapter adapterViewPager;
+    @BindView(R.id.viewPager) ViewPager mViewPager;
+
     ArrayList<Track> mTracks = new ArrayList<>();
 
     @Override

@@ -2,17 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#FF18192E"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:paddingTop="10dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <fragment
         android:id="@+id/fragmentTrackList"
-        android:name="com.epicodus.parallelmusic.ui.TrackListFragment"
+        android:name="com.epicodus.parallelmusic.ui.SavedTrackListFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_track_list" />
+        tools:layout="@layout/fragment_track_list"/>
 
 </RelativeLayout>
