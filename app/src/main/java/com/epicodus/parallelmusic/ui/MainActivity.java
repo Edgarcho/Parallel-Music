@@ -31,11 +31,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    @BindView(R.id.searchTrackButton) Button mSearchTrackButton;
-    @BindView(R.id.appNameTextView) TextView mAppNameTextView;
-    @BindView(R.id.songEditText) EditText mSongEditText;
-    @BindView(R.id.savedTrackButton) Button mSavedTrackButton;
-
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
 
@@ -44,6 +39,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+
+    @BindView(R.id.searchTrackButton) Button mSearchTrackButton;
+    @BindView(R.id.appNameTextView) TextView mAppNameTextView;
+    @BindView(R.id.songEditText) EditText mSongEditText;
+    @BindView(R.id.savedTrackButton) Button mSavedTrackButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

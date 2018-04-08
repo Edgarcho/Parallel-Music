@@ -28,11 +28,10 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class SavedTrackListFragment extends Fragment implements OnStartDragListener {
-    @BindView(R.id.recyclerView)
-    RecyclerView mRecyclerView;
-
     private FirebaseTrackListAdapter mFirebaseAdapter;
     private ItemTouchHelper mItemTouchHelper;
+
+    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
 
 
     public SavedTrackListFragment() {
@@ -64,6 +63,14 @@ public class SavedTrackListFragment extends Fragment implements OnStartDragListe
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mFirebaseAdapter);
 
+        mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                mFirebaseAdapter.notifyDataSetChanged();
+            }
+        });
+
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mFirebaseAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
@@ -71,7 +78,7 @@ public class SavedTrackListFragment extends Fragment implements OnStartDragListe
 
     @Override
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
-
+        mItemTouchHelper.startDrag(viewHolder);
     }
 
     @Override
@@ -79,5 +86,4 @@ public class SavedTrackListFragment extends Fragment implements OnStartDragListe
         super.onDestroy();
         mFirebaseAdapter.cleanup();
     }
-
 }

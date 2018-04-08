@@ -31,14 +31,14 @@ import okhttp3.Response;
  * A simple {@link Fragment} subclass.
  */
 public class TrackListFragment extends Fragment {
-    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
-    @BindView(R.id.songTextView) TextView mSongTextView;
-
     public ArrayList<Track> tracks = new ArrayList<>();
     private TrackListAdapter mAdapter;
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private String mSong;
+
+    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
+    @BindView(R.id.songTextView) TextView mSongTextView;
 
     public TrackListFragment() {
     }
@@ -49,7 +49,6 @@ public class TrackListFragment extends Fragment {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mEditor = mSharedPreferences.edit();
         setHasOptionsMenu(true);
-
     }
 
     @Override

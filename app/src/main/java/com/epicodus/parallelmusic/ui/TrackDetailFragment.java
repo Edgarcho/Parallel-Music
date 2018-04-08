@@ -31,17 +31,17 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class TrackDetailFragment extends Fragment implements View.OnClickListener{
+    private static final int MAX_WIDTH = 300;
+    private static final int MAX_HEIGHT = 300;
+
+    private Track mTrack;
+
     @BindView(R.id.trackDetailImageView) ImageView mTrackImage;
     @BindView(R.id.trackNameDetailTextView) TextView mTrackName;
     @BindView(R.id.trackArtistDetailTextView) TextView mTrackArtist;
     @BindView(R.id.listenerTextView) TextView mTrackListener;
     @BindView(R.id.webTextView) TextView mWebsite;
     @BindView(R.id.saveTrackButton) ImageButton mSaveTrackButton;
-
-    private static final int MAX_WIDTH = 300;
-    private static final int MAX_HEIGHT = 300;
-
-    private Track mTrack;
 
     public static TrackDetailFragment newInstance(Track track) {
         TrackDetailFragment trackDetailFragment = new TrackDetailFragment();

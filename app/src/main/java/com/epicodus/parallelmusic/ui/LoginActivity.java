@@ -23,14 +23,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private ProgressDialog mAuthProgressDialog;
+
     @BindView(R.id.loginEmailEditText)EditText mLoginEmailEditText;
     @BindView(R.id.loginPasswordEditText)EditText mLoginPasswordEditText;
     @BindView(R.id.registerTextView) TextView mRegisterTextView;
     @BindView(R.id.loginButton) Button mLoginButton;
-
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private ProgressDialog mAuthProgressDialog;
 
 
     @Override
