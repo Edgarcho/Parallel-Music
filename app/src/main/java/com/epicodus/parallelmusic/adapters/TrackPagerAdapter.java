@@ -23,7 +23,7 @@ public class TrackPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position){
-        return TrackDetailFragment.newInstance(mTracks.get(position));
+        return TrackDetailFragment.newInstance(mTracks, position);
     }
 
     @Override
