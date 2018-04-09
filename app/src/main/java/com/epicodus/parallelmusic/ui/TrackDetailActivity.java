@@ -28,8 +28,8 @@ public class TrackDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_track_detail);
         ButterKnife.bind(this);
 
-        mTracks = Parcels.unwrap(getIntent().getParcelableExtra("tracks"));
-        int startingPosition = getIntent().getIntExtra("position", 0);
+        mTracks = Parcels.unwrap(getIntent().getParcelableExtra(Constants.EXTRA_KEY_TRACKS));
+        int startingPosition = getIntent().getIntExtra(Constants.EXTRA_KEY_POSITION, 0);
 
         adapterViewPager = new TrackPagerAdapter(getSupportFragmentManager(), mTracks);
         mViewPager.setAdapter(adapterViewPager);

@@ -24,6 +24,8 @@ import com.squareup.picasso.Picasso;
 import org.parceler.Parcels;
 
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -35,6 +37,8 @@ public class TrackDetailFragment extends Fragment implements View.OnClickListene
     private static final int MAX_HEIGHT = 300;
 
     private Track mTrack;
+    private ArrayList<Track> mTracks;
+    private int mPosition;
 
     @BindView(R.id.trackDetailImageView) ImageView mTrackImage;
     @BindView(R.id.trackNameDetailTextView) TextView mTrackName;
@@ -43,10 +47,11 @@ public class TrackDetailFragment extends Fragment implements View.OnClickListene
     @BindView(R.id.webTextView) TextView mWebsite;
     @BindView(R.id.saveTrackButton) ImageButton mSaveTrackButton;
 
-    public static TrackDetailFragment newInstance(Track track) {
+    public static TrackDetailFragment newInstance(ArrayList<Track> tracks, Integer position) {
         TrackDetailFragment trackDetailFragment = new TrackDetailFragment();
         Bundle args = new Bundle();
-        args.putParcelable("track", Parcels.wrap(track));
+        args.putParcelable(Constants.EXTRA_KEY_TRACKS, Parcels.wrap(tracks));
+        args.putInt(Constants.EXTRA_KEY_POSITION, position);
         trackDetailFragment.setArguments(args);
         return trackDetailFragment;
     }
@@ -54,7 +59,9 @@ public class TrackDetailFragment extends Fragment implements View.OnClickListene
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        mTrack = Parcels.unwrap(getArguments().getParcelable("track"));
+        mTracks = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_TRACKS));
+        mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
+        mTrack = mTracks.get(mPosition);
     }
 
     @Override

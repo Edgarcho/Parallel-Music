@@ -1,6 +1,7 @@
 package com.epicodus.parallelmusic.ui;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import com.epicodus.parallelmusic.R;
 import com.epicodus.parallelmusic.adapters.TrackListAdapter;
 import com.epicodus.parallelmusic.models.Track;
 import com.epicodus.parallelmusic.services.LastFmService;
+import com.epicodus.parallelmusic.util.OnTrackSelectedListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ public class TrackListFragment extends Fragment {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private String mSong;
+    private OnTrackSelectedListener mOnTrackSelectedListener;
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.songTextView) TextView mSongTextView;
@@ -66,6 +69,16 @@ public class TrackListFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mOnTrackSelectedListener = (OnTrackSelectedListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + e.getMessage());
+        }
+    }
+
     private void getSongs(String song){
         final LastFmService lastFmService = new LastFmService();
 
@@ -83,7 +96,7 @@ public class TrackListFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mAdapter = new TrackListAdapter(getActivity(), tracks);
+                        mAdapter = new TrackListAdapter(getActivity(), tracks, mOnTrackSelectedListener);
                         mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
                         mRecyclerView.setLayoutManager(layoutManager);
