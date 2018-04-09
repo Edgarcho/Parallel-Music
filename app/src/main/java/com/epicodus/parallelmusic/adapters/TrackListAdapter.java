@@ -18,6 +18,7 @@ import com.epicodus.parallelmusic.models.Track;
 import com.epicodus.parallelmusic.ui.Constants;
 import com.epicodus.parallelmusic.ui.TrackDetailActivity;
 import com.epicodus.parallelmusic.ui.TrackDetailFragment;
+import com.epicodus.parallelmusic.util.OnTrackSelectedListener;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -37,16 +38,18 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.Trac
 
     private ArrayList<Track> mTracks = new ArrayList<>();
     private Context mContext;
+    private OnTrackSelectedListener mOnTrackSelectedListener;
 
-    public TrackListAdapter(Context context, ArrayList<Track> tracks) {
+    public TrackListAdapter(Context context, ArrayList<Track> tracks, OnTrackSelectedListener trackSelectedListener) {
         mContext = context;
         mTracks = tracks;
+        mOnTrackSelectedListener = trackSelectedListener;
     }
 
     @Override
     public TrackListAdapter.TrackViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.track_list_item, parent, false);
-        TrackViewHolder viewHolder = new TrackViewHolder(view);
+        TrackViewHolder viewHolder = new TrackViewHolder(view, mTracks , mOnTrackSelectedListener);
         return viewHolder;
     }
 
@@ -70,16 +73,21 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.Trac
 
         private Context mContext;
         private int mOrientation;
+        private ArrayList<Track> mTracks = new ArrayList<>();
+        private OnTrackSelectedListener mTrackSelectedListener;
 
-        public TrackViewHolder(View itemView) {
+        public TrackViewHolder(View itemView, ArrayList<Track> tracks, OnTrackSelectedListener trackSelectedListener){
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
             itemView.setOnClickListener(this);
             mOrientation = itemView.getResources().getConfiguration().orientation;
+            mTracks = tracks;
+            mTrackSelectedListener = trackSelectedListener;
             if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
                 createDetailFragment(0);
             }
+            itemView.setOnClickListener(this);
         }
 
         public void bindTrack(Track track) {
@@ -96,6 +104,7 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.Trac
         @Override
         public void onClick(View view) {
             int itemPosition = getLayoutPosition();
+            mTrackSelectedListener.onTrackSelected(itemPosition, mTracks);
             if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
                 createDetailFragment(itemPosition);
             } else {
